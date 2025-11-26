@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amagi AR - Transactions</title>
+  <link rel="stylesheet" href="Transaction-style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Amagi AR</h2>
+    <div class="menu-item">Home</div>
+    <div class="menu-item">Inbox</div>
+    <div class="menu-item">Customers</div>
+    <div class="menu-item active">Transactions</div>
+    <div class="menu-item">Collections</div>
+    <div class="menu-item">Reports</div>
+    <div class="menu-item">Cash App</div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div id="page-title">Transactions - Payments</div>
+      <div class="search">🔍 Search</div>
+    </div>
+
+    <!-- Toggle Buttons -->
+    <div class="toggle-buttons">
+      <button id="payments-btn" class="active">Payments</button>
+      <button id="invoices-btn">Invoices</button>
+    </div>
+
+    <div class="actions">
+      <button class="action-btn">Filter</button>
+      <button class="action-btn">Export</button>
+    </div>
+
+    <!-- Payments Table -->
+    <div id="payments-table" class="table-container active">
+      <table>
+        <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Customer</th>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>Applied Amount</th>
+            <th>Unapplied Amount</th>
+            <th>Payment Date</th>
+            <th>Applied Invoices</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="link">PMT-2025 0987</td>
+            <td>MediaTech Inc.</td>
+            <td>USD</td>
+            <td>$28,000</td>
+            <td>$28,000</td>
+            <td>$0</td>
+            <td>2025-04-28</td>
+            <td>INV-2025-1130, INV-2025-1131</td>
+          </tr>
+          <tr>
+            <td class="link">PMT-2025 0988</td>
+            <td>Acme Corporation</td>
+            <td>USD</td>
+            <td>$35,000</td>
+            <td>$32,000</td>
+            <td class="highlight">$3,000</td>
+            <td>2025-04-26</td>
+            <td>INV-2025-1120</td>
+          </tr>
+          <tr>
+            <td class="link">PMT-2025 0989</td>
+            <td>XYZ Media Services</td>
+            <td>EUR</td>
+            <td>18,000</td>
+            <td>18,000</td>
+            <td>$0</td>
+            <td>2025-04-25</td>
+            <td>INV-2025-1110, INV-2025-1111</td>
+          </tr>
+          <tr>
+            <td class="link">PMT-2025 0990</td>
+            <td>StreamFlow Ltd.</td>
+            <td>USD</td>
+            <td>$15,000</td>
+            <td>$12,000</td>
+            <td class="highlight">$3,000</td>
+            <td>2025-04-22</td>
+            <td>INV-2025-1090</td>
+          </tr>
+          <tr>
+            <td class="link">PMT-2025 0991</td>
+            <td>Global Broadcasting</td>
+            <td>GBP</td>
+            <td>45,000</td>
+            <td>40,000</td>
+            <td class="highlight">5,000</td>
+            <td>2025-04-20</td>
+            <td>INV-2025-1070, INV-2025-1071, INV-2025-1072</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Invoices Table -->
+    <div id="invoices-table" class="table-container">
+      <div class="invoice-filter-buttons">
+        <button id="open-invoices-btn" class="invoice-filter-btn active">Open Invoices</button>
+        <button id="closed-invoices-btn" class="invoice-filter-btn">Closed Invoices</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Invoice Number</th>
+            <th>Customer</th>
+            <th>Issue Date</th>
+            <th>Currency</th>
+            <th>Invoice Amount</th>
+            <th>Due Amount</th>
+            <th>Due Date</th>
+            <th>Age</th>
+            <th>Invoice Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="invoices-tbody">
+          <!-- Open Invoices Data -->
+          <tr class="invoice-row open-invoice">
+            <td>
+              <span>INV-2025-1234</span>
+              <span class="pdf-icon" onclick="openInvoicePDF('INV-2025-1234')">📄</span>
+            </td>
+            <td>Waypoint Communications LLC</td>
+            <td>2025-04-15</td>
+            <td>USD</td>
+            <td>$25,000</td>
+            <td>$25,000</td>
+            <td>2025-05-15</td>
+            <td>807</td>
+            <td><span class="status-badge overdue">Overdue</span></td>
+            <td><span class="status-badge open">Open</span></td>
+          </tr>
+          <tr class="invoice-row open-invoice">
+            <td>
+              <span>INV-2025-1235</span>
+              <span class="pdf-icon" onclick="openInvoicePDF('INV-2025-1235')">📄</span>
+            </td>
+            <td>XYZ Media Services</td>
+            <td>2025-04-12</td>
+            <td>USD</td>
+            <td>$18,500</td>
+            <td>$18,500</td>
+            <td>2025-05-12</td>
+            <td>771</td>
+            <td><span class="status-badge due-soon">Due Soon</span></td>
+            <td><span class="status-badge open">Open</span></td>
+          </tr>
+          <tr class="invoice-row open-invoice">
+            <td>
+              <span>INV-2025-1236</span>
+              <span class="pdf-icon" onclick="openInvoicePDF('INV-2025-1236')">📄</span>
+            </td>
+            <td>MediaTech Inc.</td>
+            <td>2025-04-10</td>
+            <td>EUR</td>
+            <td>15,000</td>
+            <td>15,000</td>
+            <td>2025-05-10</td>
+            <td>740</td>
+            <td><span class="status-badge paid">Paid</span></td>
+            <td><span class="status-badge open">Open</span></td>
+          </tr>
+          <tr class="invoice-row open-invoice">
+            <td>
+              <span>INV-2025-1237</span>
+              <span class="pdf-icon" onclick="openInvoicePDF('INV-2025-1237')">📄</span>
+            </td>
+            <td>StreamFlow Ltd</td>
+            <td>2025-04-05</td>
+            <td>USD</td>
+            <td>$12,000</td>
+            <td>$12,000</td>
+            <td>2025-05-05</td>
+            <td>705</td>
+            <td><span class="status-badge pending">Pending</span></td>
+            <td><span class="status-badge open">Open</span></td>
+          </tr>
+          <tr class="invoice-row open-invoice">
+            <td>
+              <span>INV-2025-1238</span>
+              <span class="pdf-icon" onclick="openInvoicePDF('INV-2025-1238')">📄</span>
+            </td>
+            <td>Global Broadcasting</td>
+            <td>2025-04-01</td>
+            <td>GBP</td>
+            <td>8,000</td>
+            <td>8,000</td>
+            <td>2025-05-01</td>
+            <td>670</td>
+            <td><span class="status-badge partial">Partial</span></td>
+            <td><span class="status-badge open">Open</span></td>
+          </tr>
+          
+          <!-- Closed Invoices Data -->
+          <tr class="invoice-row closed-invoice">
+            <td>
+              <span>INV-2025-1001</span>
+              <span class="pdf-icon" onclick="openInvoicePDF('INV-2025-1001')">📄</span>
+            </td>
+            <td>StreamFlow Ltd</td>
+            <td>2025-03-20</td>
+            <td>USD</td>
+            <td>$35,000</td>
+            <td>$0</td>
+            <td>2025-04-20</td>
+            <td>807</td>
+            <td><span class="status-badge paid">Paid</span></td>
+            <td><span class="status-badge closed">Closed</span></td>
+          </tr>
+          <tr class="invoice-row closed-invoice">
+            <td>
+              <span>INV-2025-1002</span>
+              <span class="pdf-icon" onclick="openInvoicePDF('INV-2025-1002')">📄</span>
+            </td>
+            <td>Global Broadcasting</td>
+            <td>2025-03-15</td>
+            <td>GBP</td>
+            <td>22,000</td>
+            <td>£0</td>
+            <td>2025-04-15</td>
+            <td>618</td>
+            <td><span class="status-badge paid">Paid</span></td>
+            <td><span class="status-badge closed">Closed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PDF Modal -->
+  <div id="pdf-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Invoice PDF - <span id="pdf-invoice-id"></span></h3>
+        <span class="close" onclick="closePDFModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdf-viewer" width="100%" height="600px" frameborder="0"></iframe>
+        <div class="pdf-actions">
+          <button onclick="downloadPDF()" class="action-btn">Download PDF</button>
+          <button onclick="printPDF()" class="action-btn">Print</button>
+          <button onclick="closePDFModal()" class="action-btn secondary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="Transaction-script.js"></script>
+</body>
+</html>
